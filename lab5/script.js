@@ -57,3 +57,41 @@ function validateForm(event) {
         info.innerHTML = `<strong>Ім'я</strong>: ${name}<br><strong>Група</strong>: ${group}<br><strong>Телефон</strong>: ${phone}<br><strong>Факультет</strong>: ${faculty}<br><strong>Адреса</strong>: ${address}`;
     }
 }
+
+// Завдання 2
+console.log("варіант: ", ((163 - 1) % 36) + 1);
+const table = document.getElementById("table");
+const colorInput = document.getElementById("colorInput");
+for (let i = 0; i < 6; i++) {
+    const row = document.createElement("tr");
+    for (let j = 0; j < 6; j++) {
+        const cell = document.createElement("td");
+        cell.textContent = i * 6 + j + 1;
+        row.appendChild(cell);
+    }
+    table.appendChild(row);
+}
+
+function getRandomColor() {
+    const letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+const cell19 = table.querySelectorAll("td")[19 - 1];
+cell19.addEventListener("mouseover", () => {
+    cell19.style.backgroundColor = getRandomColor();
+});
+cell19.addEventListener("click", () => {
+    cell19.style.backgroundColor = colorInput.value;
+});
+cell19.addEventListener("dblclick", () => {
+    for (let i = 0; i < 6; i++) {
+        for (let j = 0; j < 6; j++) {
+            if (i === j) table.rows[i].cells[j].style.backgroundColor = getRandomColor();
+        }
+    }
+});
